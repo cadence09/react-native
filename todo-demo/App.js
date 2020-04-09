@@ -1,7 +1,9 @@
 import React,{useState}from 'react';
 
-import { StyleSheet, Text, View, NativeAppEventEmitter, Button, TextInput,FlatList } from 'react-native';
+import { StyleSheet, Text, View, NativeAppEventEmitter, Button, TextInput,FlatList,Alert, TouchableWithoutFeedback,Keyboard } from 'react-native';
 import Header from './components/header';
+import TodoItem from './components/todoItem';
+import AddTodo from './components/addTodo'
 
 
 export default function App(){
@@ -11,15 +13,38 @@ export default function App(){
     {text:'play on the swith', key:'3'}
   ]);
 
+  // deleting function
+  const pressHandler =(key)=>{
+    setTodos((prevTodos)=>{
+      return prevTodos.filter(todo=>todo.key !=key)
+    })
+  }
+
+  // alert box
+const submitHandler=(text)=>{
+  if(text.length>2){
+  setTodos((prevTodos)=>{
+    return [...prevTodos,{text:text, key:Math.random().toString()}
+    ]
+  })
+}else{
+  Alert.alert('!oops','Todo must be over 2 char long',[
+    {text:'understood',onPress:()=>console.log("alert closed")}])
+}
+}
   return (
+    <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
     <View style={styles.container}>
       <Header/>
       <View style={styles.content}>
+        <AddTodo submitHandler={submitHandler}/>
         <View style={styles.list}>
-  <FlatList data={todos} renderItem={({item})=>(TodoItem item={item})}/>
+          {/* list out data */}
+  <FlatList data={todos} renderItem={({ item }) =>(<TodoItem item1={item} pressHandler={pressHandler}/>)}/>
         </View>
       </View>
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 
