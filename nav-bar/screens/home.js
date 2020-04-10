@@ -17,12 +17,12 @@ export default function Home({navigation}){
         
             {/* <Text>Home Screen</Text>
             <Button title='go to review details' onPress={pressHandler}/> */}
-            {/* <FlatList data={reviews} renderItem={({item})=>(
+            <FlatList data={reviews} renderItem={({item})=>(
                 <TouchableOpacity onPress={()=>navigation.navigate('ReviewDetails',item)}>
                     <Text>{item.title}</Text>
                 </TouchableOpacity>
-            )}/> */}
-            <Text>Home</Text>
+            )}/> 
+         
         </View>
 
     )
