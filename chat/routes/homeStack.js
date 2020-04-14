@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from '../screens/home';
 import Friends from '../screens/friends';
 import ShareMessage from '../screens/shareMessage';
+import TakePhoto from '../screens/camera';
 const screens={
     Home:{
         screen: Home,
@@ -10,6 +11,9 @@ const screens={
            title:"homepage",
             headerStyle:{backgroundColor:'pink'}
         }
+    },
+    TakePhoto:{
+        screen:TakePhoto
     },
     ShareMessage:{
         screen: ShareMessage
